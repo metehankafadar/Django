@@ -1,0 +1,24 @@
+{% extends "homebase.html" %}
+
+{% block title %}   {{ setting.title }} {% endblock %}
+{% block keywords %} {{ setting.keywords }} {% endblock %}
+{% block description %} {{ setting.description }} {% endblock %}
+{% block head %} {% include "header.html" %}{% endblock %}
+
+
+
+{% block content %}
+    <div id="contact-page" class="container">
+    	<div class="bg">
+	    	<div class="row">
+	    		<div class="col-sm-12">
+					<h2 class="title text-center">Hakkımızda</h2>
+				</div>
+			</div>
+	    					 {{ setting.aboutus|safe }}
+
+    	</div>
+    </div>
+
+
+ {% endblock %}

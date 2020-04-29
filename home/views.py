@@ -7,15 +7,24 @@ from django.contrib import messages
 
 # Create your views here.
 from home.models import Setting, ContactFormu, ContactFormMessage
-from product.models import Product
+from product.models import Product, Category, Images
 
 
 def index(request):
     setting= Setting.objects.get(pk=1)
     sliderdata = Product.objects.all()[:4]
+    category=Category.objects.all()
+    dayproducts=Product.objects.all()[:4]
+    lastproducts = Product.objects.all().order_by('-id')[:3]
+    randomproducts = Product.objects.all().order_by('?')[:8]
+
     context = {'setting': setting,
+               'category':category,
                'page':'home',
-               'sliderdata':sliderdata}
+               'sliderdata':sliderdata,
+               'dayproducts':dayproducts,
+               'lastproducts':lastproducts,
+               'randomproducts':randomproducts}
     return render(request, 'index.html', context)
 
 def hakkimizda(request):
@@ -44,5 +53,28 @@ def iletisim(request):
     form = ContactFormu()
     context = {'setting': setting,'form':form}
     return render(request, 'iletisim.html', context)
+
+def category_products(request,id,slug):
+    category = Category.objects.all()
+    categorydata=Category.objects.get(pk=id)
+    products=Product.objects.filter(category_id=id)
+    context={'products':products,
+             'category':category,
+             'categorydata':categorydata,
+             'slug':slug}
+    return render(request, 'products.html', context)
+
+def products_detail(request,id,slug):
+    category = Category.objects.all()
+    product=Product.objects.get(pk=id)
+    images=Images.objects.filter(product_id=id)
+
+    context = {#'products': products,
+               'category': category,
+                'product':product,
+                'images':images,
+               }
+
+    return render(request, 'product_detail.html', context)
 
 

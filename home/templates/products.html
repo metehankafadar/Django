@@ -1,0 +1,52 @@
+{% extends "homebase.html" %}
+
+{% block title %}   {{ categorydata.title }} Products {% endblock %}
+{% block keywords %} {{ categorydata.keywords }} {% endblock %}
+{% block description %} {{ categorydata.description }} {% endblock %}
+
+{% block sidebar %} {% include "sidebar.html" %}{% endblock %}
+
+
+
+
+{% block content %}
+    <div class="col-sm-9 padding-right">
+					<div class="features_items"><!--features_items-->
+						<h2 class="title text-center">Ürünlerimiz {{ categorydata.title }}</h2>
+                        {% for rs in products %}
+						<div class="col-sm-4">
+							<div class="product-image-wrapper">
+								<div class="single-products">
+									<div class="productinfo text-center">
+										<img src="{{ rs.image.url }}" alt="" style="height: 268px;width: 249px"/>
+										<h2>{{rs.price}}</h2>
+										<p>{{rs.title}}</p>
+										<a href="/product/{{ rs.id }}/{{ rs.slug }}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+									</div>
+									<div class="product-overlay">
+										<div class="overlay-content">
+											<h2>{{rs.price}}</h2>
+											<p>{{rs.title}}</p>
+											<a href="/product/{{ rs.id }}/{{ rs.slug }}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+										</div>
+									</div>
+								</div>
+								<div class="choose">
+									<ul class="nav nav-pills nav-justified">
+										<li><a href=""><i class="fa fa-plus-square"></i>Sepete Ekle</a></li>
+										<li><a href="/product/{{ rs.id }}/{{ rs.slug }}"><i class="fa fa-plus-square"></i>Ürünü Gör</a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+                        {% endfor %}
+
+
+						</div>
+
+
+
+
+
+
+ {% endblock %}

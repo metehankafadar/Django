@@ -115,9 +115,13 @@
 						</div>
 					</div>
 					<div class="col-sm-3">
+                        <form action="/search/" method="POST">
+                        {% csrf_token %}
 						<div class="search_box pull-right">
-							<input type="text" placeholder="Search"/>
+							<input name="query" type="text" placeholder="Search"/>
+                            <button class="fa fa-search"></button>
 						</div>
+                            </form>
 					</div>
 				</div>
 			</div>

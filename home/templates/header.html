@@ -1,5 +1,6 @@
 <header id="header"><!--header-->
     {% load static %}
+
 		<div class="header_top"><!--header_top-->
 			<div class="container">
 				<div class="row">
@@ -71,6 +72,24 @@
 				</div>
 			</div>
 		</div><!--/header-middle-->
+    <script>
+
+  $(function() {
+    $("#query").autocomplete({
+      source: "/search_auto/",
+      select: function (event, ui) { //item selected
+        AutoCompleteSelectHandler(event, ui)
+      },
+      minLength: 2,
+    });
+  });
+
+  function AutoCompleteSelectHandler(event, ui)
+  {
+    var selectedObj = ui.item;
+  }
+
+</script>
 
 		<div class="header-bottom"><!--header-bottom-->
 			<div class="container">
@@ -118,7 +137,21 @@
                         <form action="/search/" method="POST">
                         {% csrf_token %}
 						<div class="search_box pull-right">
-							<input name="query" type="text" placeholder="Search"/>
+                            {% load mptt_tags  %}
+
+                            <label for="cars">Kategori Seç:</label>
+                           <select name="catid">
+                           <option value="0">Kategorileri Gör</option>
+                               {% recursetree category %}
+                               {% if node.is_leaf_node %}<option value="{{ node.id }}">{{ node.title }}</option> {% endif %}
+                           {% if not node.is_leaf_node %}
+                         <optgroup label="{{node.title}}">
+                             {{children}}
+                            </optgroup>
+                           {% endif %}
+                           {% endrecursetree %}
+                        </select>
+							<input id="query" name="query" type="text" placeholder="Search"/>
                             <button class="fa fa-search"></button>
 						</div>
                             </form>

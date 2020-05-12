@@ -67,7 +67,7 @@
 								<li><a href="cart.html"><i class="fa fa-shopping-cart"></i> Cart</a></li>
                                 {% if user.id is None %}
                                 <li><a href="/login/"><i class="fa fa-lock"></i> Login</a></li>
-                                    <li><a href="/join/"><i class="fa fa-shopping-cart"></i> Üye ol</a></li>
+                                    <li><a href="/signup/"><i class="fa fa-shopping-cart"></i> Üye ol</a></li>
                                 {% else %}
                                 <li><a href=""><i class="fa fa-user"></i> {{ user.username }}</a></li>
                                     <li><a href="/logout/"><i class="fa fa-backward"></i> Çıkış Yap</a></li>

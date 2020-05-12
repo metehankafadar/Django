@@ -8,7 +8,7 @@ from django.contrib import messages
 
 
 # Create your views here.
-from home.forms import SearchForm
+from home.forms import SearchForm, SignUpForm
 from home.models import Setting, ContactFormu, ContactFormMessage
 from product.models import Product, Category, Images, Comment
 
@@ -32,12 +32,15 @@ def index(request):
 
 def hakkimizda(request):
     setting= Setting.objects.get(pk=1)
-    context = {'setting': setting}
+    category = Category.objects.all()
+    context = {'setting': setting,
+               'category':category}
     return render(request, 'hakkimizda.html', context)
 
 def referanslar(request):
     setting= Setting.objects.get(pk=1)
-    context = {'setting': setting}
+    category = Category.objects.all()
+    context = {'setting': setting,'category': category}
     return render(request, 'referanslarimiz.html', context)
 
 def iletisim(request):
@@ -54,7 +57,8 @@ def iletisim(request):
             return HttpResponseRedirect('/iletisim')
     setting= Setting.objects.get(pk=1)
     form = ContactFormu()
-    context = {'setting': setting,'form':form}
+    category = Category.objects.all()
+    context = {'setting': setting,'form':form,'category':category}
     return render(request, 'iletisim.html', context)
 
 def category_products(request,id,slug):
@@ -141,5 +145,26 @@ def login_view(request):
                'category': category,
                }
     return render(request, 'login.html', context)
+
+def signup_view(request):
+    if request.method == "POST":
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=password)
+            login(request, user)
+            return HttpResponseRedirect('/')
+
+    form = SignUpForm()
+    category = Category.objects.all()
+    context = {
+        'category': category,
+        'form': form,
+    }
+    return render(request, 'signup.html', context)
+
+
 
 

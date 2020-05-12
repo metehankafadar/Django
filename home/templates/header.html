@@ -69,7 +69,8 @@
                                 <li><a href="/login/"><i class="fa fa-lock"></i> Login</a></li>
                                     <li><a href="/signup/"><i class="fa fa-shopping-cart"></i> Üye ol</a></li>
                                 {% else %}
-                                <li><a href=""><i class="fa fa-user"></i> {{ user.username }}</a></li>
+                                    <img src="{{ request.user.profile.image.url }}">
+                                <li><a href="/user"><i class="fa fa-user"></i> {{ user.username }}</a></li>
                                     <li><a href="/logout/"><i class="fa fa-backward"></i> Çıkış Yap</a></li>
                                 {% endif %}
 

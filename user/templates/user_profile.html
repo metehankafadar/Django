@@ -1,0 +1,66 @@
+{% extends "homebase.html" %}
+
+{% block title %}  {{ profile.user }} {% endblock %}
+{% block keywords %} {{ setting.keywords }} {% endblock %}
+{% block description %} {{ setting.description }} {% endblock %}
+
+
+
+{% block content %}
+
+
+
+
+
+
+
+
+
+   {% include "user_panel.html" %}
+
+
+                    <div class="col-sm-9">
+					<div class="blog-post-area">
+						<h2 class="title text-center">Profil </h2>
+						<table class="glyphicon-shopping-cart table">
+                            <thead>
+                            <tr>
+                                <th class="text-center"></th>
+                                <td class="thumbnail"><img src="{{ profile.image.url }}" style="height: 100px;width: 150px"></td>
+                            </tr>
+                            <tr>
+                                <th class="text-center">Name Surname</th>
+                                <td class="text-center">{{ profile.user_name }}</td>
+                            </tr>
+                            <tr>
+                                <th class="text-center">Email</th>
+                                <td class="text-center">{{ profile.user.email }}</td>
+                            </tr>
+                            <tr>
+                                <th class="text-center">Phone</th>
+                                <td class="text-center">{{ profile.phone }}</td>
+                            </tr>
+                            <tr>
+                                <th class="text-center">Adress</th>
+                                <td class="text-center">{{ profile.adress }}</td>
+                            </tr>
+                            <tr>
+                                <th class="text-center">City</th>
+                                <td class="text-center">{{ profile.city }}</td>
+                            </tr>
+                            <tr>
+                                <th class="text-center">Country</th>
+                                <td class="text-center">{{ profile.country }}</td>
+                            </tr>
+                            </thead>
+                        </table>
+					</div><!--/blog-post-area-->
+
+
+			</div>
+		</div>
+	</section>
+
+
+
+ {% endblock %}

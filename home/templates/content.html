@@ -7,17 +7,10 @@
 							<div class="product-image-wrapper">
 								<div class="single-products">
 										<div class="productinfo text-center">
-											<img src="{{ rs.image.url }}" style="height: 268px;width: 249px" alt="">
+											<a href="/product/{{ rs.id }}/{{ rs.slug }}"> <img src="{{ rs.image.url }}" style="height: 268px;width: 249px" alt=""></a>
 											<h2>{{rs.price}}</h2>
 											<p>{{rs.title}}</p>
-											<a href="/product/{{ rs.id }}/{{ rs.slug }}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-										</div>
-										<div class="product-overlay">
-											<div class="overlay-content">
-												<h2>{{rs.price}}</h2>
-												<p>{{rs.title}}</p>
-												<a href="/product/{{ rs.id }}/{{ rs.slug }}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-											</div>
+											<a href="/order/addtocart/{{ rs.id }}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
 										</div>
 								</div>
 								<div class="choose">

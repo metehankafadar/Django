@@ -1,0 +1,87 @@
+{% extends "homebase.html" %}
+
+{% block title %} Shop Cart {% endblock %}
+{% block keywords %} {{ setting.keywords }} {% endblock %}
+{% block description %} {{ setting.description }} {% endblock %}
+
+
+
+{% block content %}
+
+
+                                    {% if messages %}
+                                {% for message in messages %}
+                                    <div class="alert alert-{{ message.tags }}" role="alert">
+                                        {{ message }}
+                                    </div>
+                                {% endfor %}
+                            {% endif %}
+
+    <section id="cart_items">
+		<div class="container">
+			<div class="breadcrumbs">
+				<ol class="breadcrumb">
+				  <li><a href="/">Home</a></li>
+				  <li class="active">Shopping Cart</li>
+				</ol>
+			</div>
+			<div class="table-responsive cart_info">
+				<table class="table table-condensed">
+					<thead>
+						<tr class="cart_menu">
+							<td class="image">Item</td>
+							<td class="description"></td>
+							<td class="price">Price</td>
+							<td class="quantity">Quantity</td>
+							<td class="total">Total</td>
+							<td></td>
+						</tr>
+					</thead>
+					<tbody>
+                    {% for rs in schopcart %}
+						<tr>
+							<td class="cart_product">
+								<a href=""><img src="{{rs.product.image.url}}" style="width: 50px;height: 50px" alt=""></a>
+							</td>
+							<td class="cart_description">
+								<h4><a href="">{{rs.product}}</a></h4>
+								<p>Web ID: 1089772</p>
+							</td>
+							<td class="cart_price">
+								<p>{{rs.product.price}}</p>
+							</td>
+							<td class="cart_quantity">
+								<div class="cart_quantity_button">
+                                    <form action="/order/addtocart/{{ rs.product.id }}">
+                                        {% csrf_token %}
+									<a class="cart_quantity_up" href=""> + </a>
+									<input class="cart_quantity_input" type="text" name="quantity" value="{{rs.quantity}}" autocomplete="off" size="2">
+									<a class="cart_quantity_down" href=""> - </a>
+                                    </form>
+								</div>
+							</td>
+							<td class="cart_total">
+								<p class="cart_total_price">{{rs.amount}}</p>
+							</td>
+							<td class="cart_delete">
+								<a class="cart_quantity_delete" href="/order/deletefromcart/{{ rs.id }}" onclick="return confirm('Silinecek Emin misiniz?')"><i class="fa fa-times"></i></a>
+							</td>
+						</tr>
+                    {% endfor %}
+                    <tr><td></td><td></td><td></td><td><p class="cart_total_price"> &nbsp;&nbsp;&nbsp;Total</p></td>
+                    <td class="cart_total">
+								<p class="cart_total_price">{{total}}</p>
+							</td>
+                    </tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</section> <!--/#cart_items-->
+
+
+
+
+
+
+ {% endblock %}

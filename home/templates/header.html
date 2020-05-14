@@ -1,6 +1,14 @@
 <header id="header"><!--header-->
     {% load static %}
 
+             {% if messages %}
+                                {% for message in messages %}
+                                    <div class="alert alert-{{ message.tags }}" role="alert">
+                                        {{ message }}
+                                    </div>
+                                {% endfor %}
+                            {% endif %}
+
 		<div class="header_top"><!--header_top-->
 			<div class="container">
 				<div class="row">
@@ -71,7 +79,7 @@
                                 {% else %}
                                     <img src="{{ request.user.profile.image.url }}">
                                 <li><a href="/user"><i class="fa fa-user"></i> {{ user.username }}</a></li>
-                                    <li><a href="/shopcart"><i class="fa fa-shopping-cart"></i> Cart</a></li>
+                                    <li><a href="/shopcart"><i class="fa fa-shopping-cart"></i> Sepette:{{ request.session.cart_items }} kitap var. </a></li>
                                     <li><a href="/logout/"><i class="fa fa-backward"></i> Çıkış Yap</a></li>
 
                                 {% endif %}

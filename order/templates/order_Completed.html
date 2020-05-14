@@ -1,0 +1,34 @@
+{% extends "homebase.html" %}
+
+{% block title %} Shop Cart {% endblock %}
+{% block keywords %} {{ setting.keywords }} {% endblock %}
+{% block description %} {{ setting.description }} {% endblock %}
+
+
+
+{% block content %}
+
+
+
+
+    <section id="cart_items">
+		<div class="container">
+			<div class="breadcrumbs">
+				<ol class="breadcrumb">
+				  <li><a href="/">Home</a></li>
+				  <li class="active">Orders Completed</li>
+				</ol>
+			</div>
+            <h1>Kullanıcı Adınız: {{ user.username }}</h1>
+            <h1>Kodunuz      : <i>{{ ordercode }}</i></h1>
+            <h1>Siparişiniz için teşekkürler</h1>
+
+		</div>
+	</section> <!--/#cart_items-->
+
+
+
+
+
+
+ {% endblock %}

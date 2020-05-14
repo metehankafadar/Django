@@ -9,13 +9,7 @@
 {% block content %}
 
 
-                                    {% if messages %}
-                                {% for message in messages %}
-                                    <div class="alert alert-{{ message.tags }}" role="alert">
-                                        {{ message }}
-                                    </div>
-                                {% endfor %}
-                            {% endif %}
+
 
     <section id="cart_items">
 		<div class="container">
@@ -73,6 +67,7 @@
 								<p class="cart_total_price">{{total}}</p>
 							</td>
                     </tr>
+                    <tr><td></td><td></td><td></td><td></td><td></td><td><a href="/order/orderproduct" class="btn btn-default add-to-cart" style="background: orange;color: white">Satın Al</a></td> </tr>
 					</tbody>
 				</table>
 			</div>

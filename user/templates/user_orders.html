@@ -1,0 +1,62 @@
+{% extends "homebase.html" %}
+
+{% block title %}  {{ profile.user }} Order List {% endblock %}
+{% block keywords %} {{ setting.keywords }} {% endblock %}
+{% block description %} {{ setting.description }} {% endblock %}
+
+
+
+{% block content %}
+
+
+
+
+
+
+
+
+
+   {% include "user_panel.html" %}
+
+
+                    <div class="col-sm-9">
+					<div class="blog-post-area">
+						<h2 class="title text-center">Order List </h2>
+						<table class="glyphicon-shopping-cart table">
+                            <thead>
+                            <tr>
+                                <th class="text-left">ID</th>
+                                <th class="text-left">First Name</th>
+                                <th class="text-left">Last Name</th>
+                                <th class="text-left">Total</th>
+                                <th class="text-left">Status </th>
+                                <th class="text-left">Date</th>
+                                <th class="text-left">Detail</th>
+
+                            </tr>
+                            {% for rs in orders %}
+                            <tr>
+                                <td class="text-center">{{ rs.id }}</td>
+                                <td class="text-center">{{ rs.first_name }}</td>
+                                <td class="text-center">{{ rs.last_name}}</td>
+                                <td class="text-center">{{ rs.total }}</td>
+                                <td class="text-center">{{ rs.status }}</td>
+                                <td class="text-center">{{ rs.create_at }}</td>
+                                <td class="text-center"><a class="btn btn-primary" href="/user/orderdetail/{{ rs.id }}">Detay</a></td>
+                            </tr>
+                            {% endfor %}
+
+                            </thead>
+                        </table>
+					</div><!--/blog-post-area-->
+                    </div>
+
+
+
+			</div>
+		</div>
+	</section>
+
+
+
+ {% endblock %}

@@ -1,0 +1,114 @@
+{% extends "homebase.html" %}
+
+{% block title %} Order Detail {% endblock %}
+{% block keywords %} {{ setting.keywords }} {% endblock %}
+{% block description %} {{ setting.description }} {% endblock %}
+
+
+
+{% block content %}
+
+
+
+
+
+
+
+
+
+   {% include "user_panel.html" %}
+
+
+                    <div class="col-sm-9">
+					<div class="blog-post-area">
+						<h2 class="title text-center">Order Shipping Informations and Item List <Detail></Detail> </h2>
+
+
+                    <table class="glyphicon-shopping-cart table">
+                            <thead>
+                            <tr>
+                                <th class="text-left">Name Surname</th>
+                                <td class="text-center">{{ order.first_name }} {{ order.last_name }}</td>
+                            </tr>
+                            <tr>
+                                <th class="text-left">Email</th>
+                                <td class="text-center">{{ order.user.email }}</td>
+                            </tr>
+                            <tr>
+                                <th class="text-left">Phone</th>
+                                <td class="text-center">{{ order.phone }}</td>
+                            </tr>
+                            <tr>
+                                <th class="text-left">Adress</th>
+                                <td class="text-center">{{ order.address }}</td>
+                            </tr>
+                            <tr>
+                                <th class="text-left">City</th>
+                                <td class="text-center">{{ order.city }}</td>
+                            </tr>
+                            <tr>
+                                <th class="text-left">Country</th>
+                                <td class="text-center">{{ order.country }}</td>
+                            </tr>
+                            <tr>
+                                <th class="text-left">Status</th>
+                                <td class="text-center">{{ order.status }}</td>
+                            </tr>
+                             <tr>
+                                <th class="text-left">Status</th>
+                                <td class="text-center">{{ order.create_at }}</td>
+                            </tr>
+                            <tr>
+                                <th class="text-left">Shipping Informations</th>
+                                <td class="text-center">{{ order.adminnote }}</td>
+                            </tr>
+                            </thead>
+                        </table>
+
+
+
+
+
+
+
+
+
+
+						<table class="glyphicon-shopping-cart table">
+                            <thead>
+                            <tr>
+                                <th class="text-left">Image</th>
+                                <th class="text-left">Product Name</th>
+                                <th class="text-left">Price</th>
+                                <th class="text-left">Quantity</th>
+                                <th class="text-left">Amount</th>
+                                <th class="text-left">Status </th>
+                                <th class="text-left">Date</th>
+
+                            </tr>
+                            {% for rs in orderitems %}
+                            <tr>
+                               <td class="text-center"><a href="/product/{{ rs.product_id }}/{{ rs.product.slug }}" ><img src="{{ rs.product.image.url }}" style="height: 40px;width: 40px"></a></td>
+                                <td class="text-center">{{ rs.product.title }}</td>
+                                <td class="text-center">{{ rs.price}}</td>
+                                <td class="text-center">{{ rs.quantity }}</td>
+                                <td class="text-center">{{ rs.amount }}</td>
+                                <td class="text-center">{{ rs.status }}</td>
+                                <td class="text-center">{{ rs.create_at }}</td>
+                            </tr>
+                            {% endfor %}
+
+                            </thead>
+                        </table>
+					</div><!--/blog-post-area-->
+                    </div>
+
+
+
+			</div>
+		</div>
+	</section>
+
+
+
+ {% endblock %}

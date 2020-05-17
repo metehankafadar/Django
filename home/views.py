@@ -8,6 +8,7 @@ from django.contrib import messages
 
 
 # Create your views here.
+from content.models import Menu, Content, CImages
 from home.forms import SearchForm, SignUpForm
 from home.models import Setting, ContactFormu, ContactFormMessage
 from order.models import ShopCart
@@ -19,6 +20,9 @@ def index(request):
     setting= Setting.objects.get(pk=1)
     sliderdata = Product.objects.all()[:4]
     category=Category.objects.all()
+    menu = Menu.objects.all()
+    indirim = Content.objects.filter(type="indirim").order_by('-id')[:4]
+    duyuru = Content.objects.filter(type="duyuru").order_by('-id')[:4]
     dayproducts=Product.objects.all()[:4]
     lastproducts = Product.objects.all().order_by('-id')[:3]
     randomproducts = Product.objects.all().order_by('?')[:8]
@@ -27,6 +31,9 @@ def index(request):
     context = {'setting': setting,
                'category':category,
                'page':'home',
+               'menu': menu,
+               'indirim':indirim,
+               'duyuru':duyuru,
                'sliderdata':sliderdata,
                'dayproducts':dayproducts,
                'lastproducts':lastproducts,
@@ -76,18 +83,23 @@ def category_products(request,id,slug):
 
 def products_detail(request,id,slug):
     category = Category.objects.all()
-    product=Product.objects.get(pk=id)
-    images=Images.objects.filter(product_id=id)
-    comments=Comment.objects.filter(product_id=id,status='True')
+    try:
+        product=Product.objects.get(pk=id)
+        images=Images.objects.filter(product_id=id)
+        comments=Comment.objects.filter(product_id=id,status='True')
 
-    context = {'product': product,
-               'category': category,
-                'product':product,
-                'images':images,
-                'comments':comments,
-               }
+        context = {'product': product,
+                   'category': category,
+                    'product':product,
+                    'images':images,
+                    'comments':comments,
+                   }
 
-    return render(request, 'product_detail.html', context)
+        return render(request, 'product_detail.html', context)
+    except:
+        messages.warning(request,"Hata ! İlgili içerik yok")
+        link = "/error"
+        return HttpResponseRedirect(link)
 
 def product_search(request):
     if request.method == "POST":
@@ -169,5 +181,40 @@ def signup_view(request):
     return render(request, 'signup.html', context)
 
 
+def menu(request,id):
+    try:
+        content = Content.objects.get(menu_id=id)
+        link = '/content/' + str(content.id) + '/menu'
+        return HttpResponseRedirect(link)
+    except:
+        messages.warning(request,"Hata ! İlgili içerik yok")
+        link = "/error"
+        return HttpResponseRedirect(link)
+
+def contentdetail(request,id,slug):
+    category = Category.objects.all()
+    menu = Menu.objects.all()
+    try:
+        content = Content.objects.get(pk=id)
+        images = CImages.objects.filter(content_id=id)
+
+        context ={
+            'content':content,
+            'category':category,
+            'menu':menu,
+            'images':images
+        }
+        return render(request,'content_detail.html',context)
+    except:
+        messages.warning(request,"Hata ! İlgili içerik yok")
+        link = "/error"
+        return HttpResponseRedirect(link)
 
 
+def error(request):
+    category = Category.objects.all()
+    context = {
+               'category': category,
+               }
+
+    return render(request, 'error_page.html', context)

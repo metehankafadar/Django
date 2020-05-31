@@ -28,6 +28,7 @@
                                 <th class="text-left">Image</th>
                                 <th class="text-left">Title</th>
                                 <th class="text-left">Category</th>
+                                <th class="text-left">Gallery</th>
                                 <th class="text-left">Price</th>
                                 <th class="text-left">Amount</th>
                                 <th class="text-left">Status</th>
@@ -39,6 +40,8 @@
                                 <td class="text-center"><a href="/product/{{ rs.id }}/{{ rs.slug }}"><img src="{{ rs.image.url }}" style="width: 50px;width: 30px"></a></td>
                                 <td class="text-center">{{ rs.title }}</td>
                                 <td class="text-center">{{ rs.category.title}}</td>
+                                <td class="text-center">
+                                    <a href="javascript:;" onclick="window.open('/user/contentaddimage/{{ rs.id }}','gallery','height=600,width=800,top=50,left=150')"> Gallery</a></td>
                                 <td class="text-center">{{ rs.price }}</td>
                                 <td class="text-center">{{ rs.amount }}</td>
                                 <td class="text-center">{{ rs.status }}</td>

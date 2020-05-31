@@ -115,4 +115,7 @@ class ProductForm(ModelForm):
 
         }
 
-
+class ProductImageForm(ModelForm):
+    class Meta:
+        model = Images
+        fields = ['title','image']

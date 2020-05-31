@@ -9,7 +9,7 @@ from django.shortcuts import render, redirect
 from content.models import Menu, Content, ContentForm
 from home.models import UserProfile
 from order.models import Order, OrderProduct
-from product.models import Category, Comment, Product, ProductForm
+from product.models import Category, Comment, Product, ProductForm, ProductImageForm, Images
 from user.forms import UserUpdateForm, ProfileUpdateForm
 
 @login_required(login_url='/login')
@@ -185,3 +185,36 @@ def contentdelete(request,id):
     Product.objects.filter(id=id,user_id=current_user.id).delete()
     messages.success(request, 'Ürününüz silindi')
     return HttpResponseRedirect('/user/contents')
+
+@login_required(login_url='/login')
+def contentaddimage(request,id):
+    if request.method == 'POST':
+        lasturl = request.META.get('HTTP_REFERER')
+        form = ProductImageForm(request.POST,request.FILES)
+        if form.is_valid():
+            data = Images()
+            data.title = form.cleaned_data['title']
+            data.product_id = id
+            data.image = form.cleaned_data['image']
+            data.save()
+            messages.success(request, 'Resim Yüklendi')
+            return HttpResponseRedirect(lasturl)
+        else:
+            messages.error(request, 'Hata var :' + str(form.errors))
+            return HttpResponseRedirect(lasturl)
+    else:
+        product = Product.objects.get(id =id)
+        images = []
+        try:
+            images = Images.objects.filter(product_id=id)
+        except:
+            pass
+        form = ProductImageForm
+        context = {
+            'content':product,
+            'images':images,
+            'form':form,
+        }
+        return render(request,'content_gallery.html',context)
+
+

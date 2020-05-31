@@ -2,20 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e229ab74-81e4-43ad-9b2c-521b173ae8b7" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/order/migrations/0013_auto_20200531_1832.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/order/migrations/0014_auto_20200531_1837.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/product/migrations/0015_product_user.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uploads/images/36df9b3a-3c14-414f-b729-7b9cc8fc8533.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uploads/images/36df9b3a-3c14-414f-b729-7b9cc8fc8533_5bAGGS5.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user/templates/user_addcontent.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uploads/images/36df9b3a-3c14-414f-b729-7b9cc8fc8533_G3WvNqF.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/templates/content_gallery.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/home/templates/faq.html" beforeDir="false" afterPath="$PROJECT_DIR$/home/templates/faq.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/home/templates/header.html" beforeDir="false" afterPath="$PROJECT_DIR$/home/templates/header.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/product/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/product/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/home/templates/product_detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/home/templates/product_detail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/home/templates/products.html" beforeDir="false" afterPath="$PROJECT_DIR$/home/templates/products.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/home/templates/products_search.html" beforeDir="false" afterPath="$PROJECT_DIR$/home/templates/products_search.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/order/templates/Order_Form.html" beforeDir="false" afterPath="$PROJECT_DIR$/order/templates/Order_Form.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/order/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/order/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/product/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/product/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user/templates/user_contents.html" beforeDir="false" afterPath="$PROJECT_DIR$/user/templates/user_contents.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/templates/user_panel.html" beforeDir="false" afterPath="$PROJECT_DIR$/user/templates/user_panel.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/user/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/user/views.py" afterDir="false" />
     </list>
@@ -175,7 +172,7 @@
       <workItem from="1589729058000" duration="13377000" />
       <workItem from="1589817593417" duration="21000" />
       <workItem from="1590069075930" duration="837000" />
-      <workItem from="1590921090090" duration="15528000" />
+      <workItem from="1590921090090" duration="20322000" />
     </task>
     <task id="LOCAL-00001" summary="Header Değişti">
       <created>1586695328979</created>
@@ -282,7 +279,14 @@
       <option name="project" value="LOCAL" />
       <updated>1590931122055</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Son 1 Video kaldı Her şey hazırlandı. Önceden olan oto tamamlanmama sorunu çözüldü.">
+      <created>1590941249950</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1590941249950</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -305,7 +309,8 @@
     <MESSAGE value="33.video bitti" />
     <MESSAGE value="34.video bitti" />
     <MESSAGE value="FAQ tamamlandı." />
-    <option name="LAST_COMMIT_MESSAGE" value="FAQ tamamlandı." />
+    <MESSAGE value="Son 1 Video kaldı Her şey hazırlandı. Önceden olan oto tamamlanmama sorunu çözüldü." />
+    <option name="LAST_COMMIT_MESSAGE" value="Son 1 Video kaldı Her şey hazırlandı. Önceden olan oto tamamlanmama sorunu çözüldü." />
   </component>
   <component name="WindowStateProjectService">
     <state x="361" y="71" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1590926285156">
@@ -316,10 +321,10 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="933" y="241" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1600.860@0.0.1600.860" timestamp="1585679445786" />
-    <state x="393" y="7" key="CommitChangelistDialog2" timestamp="1590931120749">
+    <state x="393" y="7" key="CommitChangelistDialog2" timestamp="1590941248829">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="393" y="7" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1590931120749" />
+    <state x="393" y="7" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1590941248829" />
     <state x="549" y="139" key="FileChooserDialogImpl" timestamp="1590926226677">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -332,10 +337,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="277" y="55" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1588792086481" />
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1590931126113">
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1590941252524">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1590931126113" />
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1590941252524" />
     <state x="578" y="329" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1589646439975">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

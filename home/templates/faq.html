@@ -1,0 +1,32 @@
+{% extends "homebase.html" %}
+
+{% block title %} Sıkça Sorulan Sorular {% endblock %}
+{% block keywords %} {% endblock %}
+{% block description %}  {% endblock %}
+{% block head %}
+
+    <script>
+    $( function() {
+    $( "#accordion" ).accordion();
+  } );
+    </script>
+ {% endblock %}
+{% block sidebar %} {% include "sidebar.html" %}{% endblock %}
+
+
+
+{% block content %}
+    <div class="col-sm-9 padding-right">
+					<div class="features_items"><!--features_items-->
+						<h2 class="title text-center">Sıkça Sorulan Sorular</h2>
+                    <div id="accordion">
+                        {% for rs in faq %}
+                            <h3>{{ rs.questions}}</h3>
+                            <div>{{ rs.answer }} </div>
+                        {% endfor %}
+                    </div>
+
+					</div><!--features_items-->
+
+
+ {% endblock %}

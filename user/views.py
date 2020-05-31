@@ -6,6 +6,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 
 # Create your views here.
+from content.models import Menu, Content, ContentForm
 from home.models import UserProfile
 from order.models import Order, OrderProduct
 from product.models import Category, Comment
@@ -104,3 +105,19 @@ def deletecomment(request,id):
     messages.success(request,'Comment Deleted..')
 
     return HttpResponseRedirect('/user/comments')
+
+
+@login_required(login_url='/login')
+def contents(request):
+    category = Category.objects.all()
+    menu = Menu.objects.all()
+    current_user = request.user
+    contents = Content.objects.filter(user_id=current_user.id)
+    return HttpResponse(contents)
+    form = ContentForm()
+    context = {
+        'category': category,
+        'menu': menu,
+        'contents':contents,
+    }
+    return render(request,'user_contents.html',context)

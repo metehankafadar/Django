@@ -10,7 +10,7 @@ from django.contrib import messages
 # Create your views here.
 from content.models import Menu, Content, CImages
 from home.forms import SearchForm, SignUpForm
-from home.models import Setting, ContactFormu, ContactFormMessage
+from home.models import Setting, ContactFormu, ContactFormMessage, FAQ
 from order.models import ShopCart
 from product.models import Product, Category, Images, Comment
 
@@ -118,6 +118,7 @@ def product_search(request):
 
             context = {'products': products,
                        'category': category,
+                       'query':query,
                        }
             return render(request, 'products_search.html', context)
 
@@ -218,3 +219,14 @@ def error(request):
                }
 
     return render(request, 'error_page.html', context)
+
+
+def faq(request):
+    category = Category.objects.all()
+    faq = FAQ.objects.all().order_by('-ordernumber')
+    context = {
+        'category': category,
+        'faq': faq,
+    }
+
+    return render(request, 'faq.html', context)

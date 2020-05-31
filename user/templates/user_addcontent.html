@@ -1,0 +1,52 @@
+{% extends "homebase.html" %}
+
+{% block title %} My Contents {% endblock %}
+{% block keywords %} {{ setting.keywords }} {% endblock %}
+{% block description %} {{ setting.description }} {% endblock %}
+{% block head %}
+    {% load static %}
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script type="text/javascript" src="{% static "ckeditor/ckeditor-init.js" %}"></script>
+<script type="text/javascript" src="{% static "ckeditor/ckeditor/ckeditor.js" %}"></script>
+{% endblock %}
+
+
+{% block content %}
+
+
+
+
+
+
+
+
+
+   {% include "user_panel.html" %}
+
+
+                    <div class="col-sm-10">
+					<div class="signup-form">
+						<h2 class="title text-center">Comment List </h2>
+                            {% load static %}
+                            <form method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <fieldset>
+                                    {{ form.media }}
+                                    {{ form.as_p }}
+                                </fieldset>
+                                <div class="form-group">
+                                    <button class="btn-success" type="submit">Save</button>
+                                </div>
+                            </form>
+					</div><!--/blog-post-area-->
+                    </div>
+
+
+
+			</div>
+		</div>
+	</section>
+
+
+
+ {% endblock %}

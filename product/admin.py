@@ -16,7 +16,7 @@ class CategoryAdmin(admin.ModelAdmin):
     list_filter = ['status']
 
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ['title','category','price','amount','image_tag' ,'status']
+    list_display = ['title','category','price','amount','image_tag','user','status']
 
     list_filter = ['status','category']
     inlines = [ProductImageInLine]

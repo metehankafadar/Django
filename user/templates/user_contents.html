@@ -27,20 +27,20 @@
                             <tr>
                                 <th class="text-left">Image</th>
                                 <th class="text-left">Title</th>
-                                <th class="text-left">Type</th>
-                                <th class="text-left">Menu</th>
+                                <th class="text-left">Category</th>
+                                <th class="text-left">Price</th>
+                                <th class="text-left">Amount</th>
                                 <th class="text-left">Status</th>
-                                <th class="text-left">Date</th>
-                                <th class="text-left">Detail</th>
+                                <th class="text-left">Created At</th>
 
                             </tr>
                             {% for rs in contents %}
                             <tr>
-                                <td class="text-center"><img src="{{ rs.image.url }}" style="width: 50px;width: 30px"></td>
+                                <td class="text-center"><a href="/product/{{ rs.id }}/{{ rs.slug }}"><img src="{{ rs.image.url }}" style="width: 50px;width: 30px"></a></td>
                                 <td class="text-center">{{ rs.title }}</td>
-                                <td class="text-center">{{ rs.type }}</td>
-                                <td class="text-center">{{ rs.menu.title}}</td>
-                                <td class="text-center">{{ rs.comment }}</td>
+                                <td class="text-center">{{ rs.category.title}}</td>
+                                <td class="text-center">{{ rs.price }}</td>
+                                <td class="text-center">{{ rs.amount }}</td>
                                 <td class="text-center">{{ rs.status }}</td>
                                 <td class="text-center">{{ rs.created_at }}</td>
                                 <td class="text-center"><a class="btn btn-success" href="/user/contentedit/{{ rs.id }}">Edit</a></td>

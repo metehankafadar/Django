@@ -1,8 +1,9 @@
+from ckeditor.widgets import CKEditorWidget
 from django.contrib.auth.models import User
 from django.db import models
 
 # Create your models here.
-from django.forms import ModelForm
+from django.forms import ModelForm, TextInput, Select, FileInput
 from django.urls import reverse
 from django.utils.safestring import mark_safe
 from ckeditor_uploader.fields import RichTextUploadingField
@@ -44,6 +45,7 @@ class Product(models.Model):
         ('False', 'Hayır'),
     )
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=30)
     description = models.CharField(max_length=200,blank=True)
     keywords = models.CharField(max_length=200,blank=True)
@@ -97,7 +99,20 @@ class CommentForm(ModelForm):
         fields = ['subject','comment','rate']
 
 
+class ProductForm(ModelForm):
+    class Meta:
+        model = Product
+        fields=['category','title','description','keywords','image','Yazar','price','amount','detail','slug']
+        widgets ={
+            'title': TextInput(attrs ={'class':'input','placeholder':'title'}),
+            'keywords': TextInput(attrs={'class': 'input', 'placeholder': 'keywords'}),
+            'description': TextInput(attrs={'class': 'input', 'placeholder': 'description'}),
+            'Yazar': TextInput(attrs={'class': 'input', 'placeholder': 'Yazar'}),
+            'image': FileInput(attrs={'class': 'input', 'placeholder': 'image'}),
+            'price': TextInput(attrs={'class': 'input', 'placeholder': 'price'}),
+            'amount': TextInput(attrs={'class': 'input', 'placeholder': 'amount'}),
+            'detail': CKEditorWidget(),
 
-
+        }
 
 

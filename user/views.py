@@ -9,7 +9,7 @@ from django.shortcuts import render, redirect
 from content.models import Menu, Content, ContentForm
 from home.models import UserProfile
 from order.models import Order, OrderProduct
-from product.models import Category, Comment
+from product.models import Category, Comment, Product, ProductForm
 from user.forms import UserUpdateForm, ProfileUpdateForm
 
 @login_required(login_url='/login')
@@ -112,12 +112,76 @@ def contents(request):
     category = Category.objects.all()
     menu = Menu.objects.all()
     current_user = request.user
-    contents = Content.objects.filter(user_id=current_user.id)
-    return HttpResponse(contents)
-    form = ContentForm()
+    contents = Product.objects.filter(user_id=current_user.id)
     context = {
         'category': category,
-        'menu': menu,
-        'contents':contents,
+        'contents': contents,
+        'menu':menu,
     }
     return render(request,'user_contents.html',context)
+
+@login_required(login_url='/login')
+def addcontent(request):
+    if request.method == 'POST':
+        form = ProductForm(request.POST,request.FILES)
+        if form.is_valid():
+            current_user = request.user
+            data = Product()
+            data.user_id = current_user.id
+            data.category=form.cleaned_data['category']
+            data.title = form.cleaned_data['title']
+            data.keywords = form.cleaned_data['keywords']
+            data.description = form.cleaned_data['description']
+            data.image = form.cleaned_data['image']
+            data.Yazar =form.cleaned_data['Yazar']
+            data.price = form.cleaned_data['price']
+            data.amount =form.cleaned_data['amount']
+            data.detail = form.cleaned_data['detail']
+            data.slug =form.cleaned_data['slug']
+            data.status = 'False'
+            data.save()
+            messages.success(request,'Admine Gönderildi onay bekleniyor')
+            return HttpResponseRedirect('/user/contents')
+        else:
+            messages.warning(request,'Hata var :    '+ str(form.errors))
+            return HttpResponseRedirect('/')
+    else:
+        category = Category.objects.all()
+        menu = Menu.objects.all()
+        form = ProductForm()
+        context = {
+            'category':category,
+            'form' : form,
+            'menu': menu,
+        }
+        return render(request,'user_addcontent.html',context)
+
+@login_required(login_url='/login')
+def contentedit(request,id):
+    product = Product.objects.get(id=id)
+    if request.method == 'POST':
+        form = ProductForm(request.POST,request.FILES, instance=product)
+        if form.is_valid():
+            form.save()
+            messages.success(request,'Ürününüz güncellendi')
+            return HttpResponseRedirect('/user/contents')
+        else:
+            messages.error(request,'Hata var :' +str(form.errors))
+            return HttpResponseRedirect('/')
+    else:
+        category = Category.objects.all()
+        menu = Menu.objects.all()
+        form = ProductForm(instance=product)
+        context ={
+            'category':category,
+            'form':form,
+            'menu':menu,
+        }
+        return render(request,'user_addcontent.html',context)
+
+@login_required(login_url='/login')
+def contentdelete(request,id):
+    current_user = request.user
+    Product.objects.filter(id=id,user_id=current_user.id).delete()
+    messages.success(request, 'Ürününüz silindi')
+    return HttpResponseRedirect('/user/contents')
